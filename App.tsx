@@ -5,7 +5,7 @@ import { Feed } from "@lens-protocol/react-native-lens-ui-kit";
 export default function App() {
   return (
     <View style={styles.container}>
-      <Feed />
+      <Feed hideLikes={true} hideMirrors={true} hideCollects={true} />
     </View>
   );
 }
