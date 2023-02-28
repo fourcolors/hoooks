@@ -13,6 +13,7 @@
     "@lens-protocol/react": "^0.4.1",
     "@lens-protocol/react-native-lens-ui-kit": "^0.2.1",
     "@lens-protocol/wagmi": "^0.4.1",
+    "@react-native-async-storage/async-storage": "^1.17.11",
     "@react-navigation/bottom-tabs": "^6.5.7",
     "@react-navigation/native": "^6.1.6",
     "@react-navigation/native-stack": "^6.9.12",
@@ -25,7 +26,8 @@
     "react-native-safe-area-context": "4.5.0",
     "react-native-screens": "~3.20.0",
     "react-native-svg": "13.4.0",
-    "undefined": "@expo/vector-icons/Ionicons"
+    "undefined": "@expo/vector-icons/Ionicons",
+    "wagmi": "^0.11.x"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
