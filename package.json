@@ -23,6 +23,7 @@
     "expo-media-library": "^15.2.2",
     "expo-status-bar": "~1.4.4",
     "graphql": "^16.6.0",
+    "ipfs-http-client": "60.0.0",
     "livepeer": "^2.2.3",
     "react": "18.2.0",
     "react-native": "0.71.3",

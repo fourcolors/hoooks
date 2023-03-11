@@ -15,19 +15,19 @@ const songs = [
     albumArt: require("../assets/a4.png"),
     songTitle: "More Than This",
     artistName: "GDSN",
-    audioFile: require("../assets/MoreThanThis-GDSN.mp3"),
+    audioFile: require("../assets/1.mp3"),
   },
   {
     albumArt: require("../assets/a4.png"),
     songTitle: "Roses",
     artistName: "Kiah Victoria",
-    audioFile: require("../assets/Roses.mp3"),
+    audioFile: require("../assets/2.mp3"),
   },
   {
     albumArt: require("../assets/a3.png"),
     songTitle: "Love Myself",
     artistName: "GDSM",
-    audioFile: require("../assets/LoveMySelf.mp3"),
+    audioFile: require("../assets/3.mp3"),
   },
 ];
 

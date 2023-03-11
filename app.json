@@ -1,7 +1,8 @@
 {
   "expo": {
-    "name": "hooks-demo",
-    "slug": "hooks-demo",
+    "scheme": "hooksdemo",
+    "name": "hooksdemo",
+    "slug": "hooks",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -11,7 +12,9 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true
     },
@@ -23,6 +26,12 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "c2b34848-c8fb-4b54-b347-36fce5b21cca"
+      }
+    },
+    "owner": "hoooks"
   }
 }

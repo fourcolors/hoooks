@@ -31,30 +31,29 @@ const videos = [
 
 const VideoSelector = () => {
   const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
-  const { jwtToken } = useLensContext();
-  const profileId = "hoooks.lens";
+  // const { jwtToken } = useLensContext();
+  // const profileId = "hoooks.lens";
 
   async function handleLongPress() {
-    const ipfsData = await uploadToIPFS(
-      videos[currentVideoIndex],
-      "vid",
-      "new vid",
-      {}
-    );
-    timerId = setTimeout(() => {
-      const postRequest = {
-        profileId,
-        contentURI: "ipfs://" + ipfsData.path,
-        collectModule: {
-          freeCollectModule: { followerOnly: true },
-        },
-        referenceModule: {
-          followerOnlyReferenceModule: false,
-        },
-      };
-
-      postPublicationMutation(postRequest, jwtToken);
-    }, 3000); // 3 seconds
+    // const ipfsData = await uploadToIPFS(
+    //   videos[currentVideoIndex],
+    //   "vid",
+    //   "new vid",
+    //   {}
+    // );
+    // timerId = setTimeout(() => {
+    //   const postRequest = {
+    //     profileId,
+    //     contentURI: "ipfs://" + ipfsData.path,
+    //     collectModule: {
+    //       freeCollectModule: { followerOnly: true },
+    //     },
+    //     referenceModule: {
+    //       followerOnlyReferenceModule: false,
+    //     },
+    //   };
+    //   postPublicationMutation(postRequest, jwtToken);
+    // }, 3000); // 3 seconds
   }
 
   const handleVideoEnd = ({ didJustFinish }) => {
@@ -76,22 +75,17 @@ const VideoSelector = () => {
         showsHorizontalScrollIndicator={false}
         keyExtractor={(item) => item.id}
         renderItem={({ item, index }) => (
-          <TouchableOpacity
-            onLongPress={handleLongPress}
-            onPressOut={handleCancelPress}
-          >
-            <View style={{ width, height: "100%" }}>
-              <Video
-                resizeMode="contain"
-                isLooping
-                isMuted
-                source={item.uri}
-                style={styles.video}
-                onPlaybackStatusUpdate={handleVideoEnd}
-                shouldPlay={index === currentVideoIndex}
-              />
-            </View>
-          </TouchableOpacity>
+          <View style={{ width, height: "100%" }}>
+            <Video
+              resizeMode="contain"
+              isLooping
+              isMuted
+              source={item.uri}
+              style={styles.video}
+              onPlaybackStatusUpdate={handleVideoEnd}
+              shouldPlay={index === currentVideoIndex}
+            />
+          </View>
         )}
         onMomentumScrollEnd={({ nativeEvent }) => {
           const { contentOffset } = nativeEvent;

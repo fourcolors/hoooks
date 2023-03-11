@@ -1,13 +1,13 @@
 import client from "./clients/apollo";
 import { gql } from "@apollo/client";
 import { v4 as uuid } from "uuid";
-import { create } from "ipfs-http-client";
+// import { create } from "ipfs-http-client";
 
 const API_URL = "https://api.lens.dev";
 
-const httpLink = createHttpLink({
-  uri: API_URL,
-});
+// const httpLink = createHttpLink({
+//   uri: API_URL,
+// });
 
 export const challengeQuery = gql`
   query Challenge($address: EthereumAddress!) {
@@ -49,10 +49,84 @@ export async function getJwt(signature, address) {
 }
 
 export const feed = gql`
-  query Challenge($address: EthereumAddress!) {
-    challenge(request: { address: $address }) {
-      text
+  query ($request: ExplorePublicationRequest!) {
+    explorePublications(request: $request) {
+      items {
+        __typename
+        ... on Post {
+          ...PostFields
+        }
+      }
+      pageInfo {
+        prev
+        next
+        totalCount
+      }
     }
+  }
+  fragment MediaFields on Media {
+    url
+    width
+    height
+    mimeType
+  }
+  fragment ProfileFields on Profile {
+    id
+    name
+    picture {
+      ... on NftImage {
+        contractAddress
+        tokenId
+        uri
+        verified
+      }
+      ... on MediaSet {
+        original {
+          ...MediaFields
+        }
+        small {
+          ...MediaFields
+        }
+        medium {
+          ...MediaFields
+        }
+      }
+    }
+  }
+  fragment PublicationStatsFields on PublicationStats {
+    totalAmountOfMirrors
+    totalUpvotes
+    totalAmountOfCollects
+    totalAmountOfComments
+  }
+  fragment MetadataOutputFields on MetadataOutput {
+    name
+    description
+    content
+    media {
+      original {
+        ...MediaFields
+      }
+      small {
+        ...MediaFields
+      }
+      medium {
+        ...MediaFields
+      }
+    }
+  }
+  fragment PostFields on Post {
+    id
+    profile {
+      ...ProfileFields
+    }
+    stats {
+      ...PublicationStatsFields
+    }
+    metadata {
+      ...MetadataOutputFields
+    }
+    createdAt
   }
 `;
 
@@ -121,17 +195,18 @@ export async function postPublicationMutation(request, token) {
 
 const projectId = 1;
 const projectSecret = "super";
-const auth =
-  "Basic " + Buffer.from(projectId + ":" + projectSecret).toString("base64");
+// const auth =
+//   "Basic " + Buffer.from(projectId + ":" + projectSecret).toString("base64");
 
-const ipfsClient = create({
-  host: "ipfs.infura.io",
-  port: 5001,
-  protocol: "https",
-  headers: {
-    authorization: auth,
-  },
-});
+let ipfsClient = {};
+// = create({
+//   host: "ipfs.infura.io",
+//   port: 5001,
+//   protocol: "https",
+//   headers: {
+//     authorization: auth,
+//   },
+// });
 
 export async function uploadToIPFS(content, desc, name, meta) {
   const metaData = {
