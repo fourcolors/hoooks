@@ -1,6 +1,5 @@
 import client from "./clients/apollo";
 import { gql } from "@apollo/client";
-import { v4 as uuid } from "uuid";
 // import { create } from "ipfs-http-client";
 
 const API_URL = "https://api.lens.dev";
